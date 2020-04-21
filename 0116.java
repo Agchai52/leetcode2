@@ -22,7 +22,25 @@ class Node {
 */
 
 class Solution {
-    public Node connect(Node root) {
+    public Node connect_S_1(Node root) {
+        if (root == null) return root;
+        Node left_most = root;
+        
+        while (left_most.left != null) {
+            Node head = left_most;
+            while (head != null) {
+                head.left.next = head.right;
+                if (head.next != null) 
+                    head.right.next = head.next.left;
+                head = head.next;
+            }
+            left_most = left_most.left;
+        }
+        
+        return root;
+        
+    }
+    public Node connect_S_N(Node root) {
         if (root == null) return root;
         Queue<Node> q = new LinkedList<>();
         q.add(root);
